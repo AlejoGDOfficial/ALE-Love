@@ -5,11 +5,11 @@ local MainState = setmetatable({}, { __index = State })
 MainState.__index = MainState
 
 function MainState:new()
-    self = State:new()
+    local obj = State:new()
 
-    setmetatable(self, MainState)
+    setmetatable(obj, MainState)
 
-    return self
+    return obj
 end
 
 local Player = require('objects.Player')
@@ -18,6 +18,10 @@ local player = Player:new(20, 20)
 
 function MainState:load()
     self:add(player)
+end
+
+function MainState:update(elapsed)
+    State.update(self, elapsed)
 end
 
 return MainState
