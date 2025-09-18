@@ -12,8 +12,12 @@ function MainState:new()
     return self
 end
 
-function MainState:load()
+local Player = require('objects.Player')
 
+local player = Player:new(20, 20)
+
+function MainState:load()
+    self:add(player)
 end
 
 return MainState
