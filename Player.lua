@@ -17,4 +17,10 @@ function Player:draw()
     love.graphics.rectangle('fill', self.x, self.y, self.size, self.size)
 end
 
+function Player:update(elapsed)
+    if love.keyboard.isDown('right') then
+        player.x = player.x + 100 * elapsed
+    end
+end
+
 return Player
