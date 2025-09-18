@@ -1,6 +1,6 @@
 local ffi = require("ffi")
 
-ffi.cdef "int SetProcessDPIAware();"
+ffi.cdef("int SetProcessDPIAware();")
 
 ffi.load("user32").SetProcessDPIAware()
 
