@@ -5,7 +5,7 @@ function Player:new(x, y, size)
         x = x,
         y = y,
         size = size or 100,
-        speed = 200
+        speed = 500
     }
 
     self.__index = self
@@ -36,6 +36,8 @@ function Player:update(elapsed)
     if love.keyboard.isDown('down') then
         self.y = self.y + factor
     end
+
+    print('oso')
 end
 
 return Player
