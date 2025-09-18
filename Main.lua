@@ -1,19 +1,17 @@
-local Player = require("Player")
+local StateManager = require('backend.StateManager')
 
-local debugText = 'Test'
+local MainState = require('MainState')
 
 function love.load()
-    player = Player:new(100, 100, 100)
+    stateManager = StateManager:new()
+
+    stateManager:switch(MainState)
 end
 
 function love.update(elapsed)
-    debugText = elapsed
-
-    player:update(elapsed)
+    stateManager:update(elapsed)
 end
 
 function love.draw()
-    player:draw()
-    
-    love.graphics.print(debugText, 10, 10)
+    stateManager:draw(elapsed)
 end
