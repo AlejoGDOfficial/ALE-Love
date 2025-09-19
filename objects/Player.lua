@@ -5,7 +5,12 @@ function Player:new(x, y, size)
         x = x,
         y = y,
         size = size or 100,
-        speed = 500
+        speed = 500,
+        color = {
+            red = 255,
+            green = 255,
+            blue = 255
+        }
     }
 
     self.__index = self
@@ -14,7 +19,8 @@ function Player:new(x, y, size)
 end
 
 function Player:draw()
-    love.graphics.setColor(1, 1, 1)
+    love.graphics.setColor(self.color.red / 255, self.color.green / 255, self.color.blue / 255)
+
     love.graphics.rectangle('fill', self.x, self.y, self.size, self.size)
 end
 

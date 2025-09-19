@@ -14,7 +14,10 @@ end
 
 local Player = require('objects.Player')
 
-local player = Player:new(20, 20, 100)
+local player = Player:new(0, 0, 100)
+player:screenCenter()
+player.color.red = 0
+player.color.green = 150
 
 function MainState:load()
     self:add(player)
@@ -22,7 +25,18 @@ function MainState:load()
     ALEState.load(self)
 end
 
+local ALEMath = require('ale.ALEMath')
+
+local curTime = 0
+
 function MainState:update(elapsed)
+    curTime = curTime + elapsed
+
+    local mouseX, mouseY = love.mouse.getPosition()
+
+    player.x = ALEMath.fpsLerp(player.x, mouseX - player.size / 2, 0.5, elapsed)
+    player.y = ALEMath.fpsLerp(player.y, mouseY - player.size / 2, 0.5, elapsed)
+
     ALEState.update(self, elapsed)
 end
 
