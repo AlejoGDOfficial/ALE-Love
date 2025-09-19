@@ -1,11 +1,11 @@
-local State = require('backend.State')
+local ALEState = require('ale.ALEState')
 
-local MainState = setmetatable({}, { __index = State })
+local MainState = setmetatable({}, { __index = ALEState })
 
 MainState.__index = MainState
 
 function MainState:new()
-    local obj = State:new()
+    local obj = ALEState:new()
 
     setmetatable(obj, MainState)
 
@@ -14,14 +14,16 @@ end
 
 local Player = require('objects.Player')
 
-local player = Player:new(20, 20)
+local player = Player:new(20, 20, 100)
 
 function MainState:load()
     self:add(player)
+
+    ALEState.load(self)
 end
 
 function MainState:update(elapsed)
-    State.update(self, elapsed)
+    ALEState.update(self, elapsed)
 end
 
 return MainState

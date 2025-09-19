@@ -18,7 +18,15 @@ function Player:draw()
     love.graphics.rectangle('fill', self.x, self.y, self.size, self.size)
 end
 
+local curTime = 0
+
 function Player:update(elapsed)
+    curTime = curTime + elapsed
+
+    if true then
+        return
+    end
+
     local factor = self.speed * elapsed
 
     if love.keyboard.isDown('right') then
@@ -36,8 +44,13 @@ function Player:update(elapsed)
     if love.keyboard.isDown('down') then
         self.y = self.y + factor
     end
+end
 
-    print('oso')
+function Player:screenCenter()
+    local sw, sh = love.graphics.getDimensions()
+
+    self.x = sw / 2 - self.size / 2
+    self.y = sh / 2 - self.size / 2
 end
 
 return Player

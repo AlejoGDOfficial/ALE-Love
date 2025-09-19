@@ -1,17 +1,17 @@
-local StateManager = require('backend.StateManager')
+local ALEGame = require('ale.ALEGame')
 
-local MainState = require('MainState')
+local MainState = require('states.MainState')
+
+local game = ALEGame:new(MainState:new())
 
 function love.load()
-    stateManager = StateManager:new()
-
-    stateManager:switch(MainState)
+    game:load()
 end
 
 function love.update(elapsed)
-    stateManager:update(elapsed)
+    game:update(elapsed)
 end
 
 function love.draw()
-    stateManager:draw(elapsed)
+    game:draw(elapsed)
 end
