@@ -11,31 +11,39 @@ function ALEState:new()
 end
 
 function ALEState:load()
-    for index, object in ipairs(self.members) do
-        if object.load then
-            object:load()
-        end
+    self.super:load()
+
+    for _, obj in ipairs(self.members) do
+        obj:load()
     end
 end
 
 function ALEState:draw()
-    for index, object in ipairs(self.members) do
-        if object.draw then
-            object:draw()
-        end
+    self.super:draw()
+
+    for _, obj in ipairs(self.members) do
+        obj:draw()
     end
 end
 
 function ALEState:update(elapsed)
-    for index, object in ipairs(self.members) do
-        if object.update then
-            object:update(elapsed)
-        end
+    self.super:update(elapsed)
+
+    for _, obj in ipairs(self.members) do
+        obj:update(elapsed)
     end
 end
 
-function ALEState:add(object)
-    table.insert(self.members, object)
+function ALEState:add(obj)
+    table.insert(self.members, obj)
+end
+
+function ALEState:remove(obj)
+    for index, object in ipairs(self.members) do
+        if object == obj then
+            table.remove(self.members, index)
+        end
+    end
 end
 
 return ALEState

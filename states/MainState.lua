@@ -10,9 +10,9 @@ player.color.red = 0
 player.color.green = 155
 
 function MainState:load()
-    self:add(player)
+    self.super:load()
 
-    ALEState.load(self)
+    self:add(player)
 end
 
 local ALEMath = require('ale.ALEMath')
@@ -20,6 +20,8 @@ local ALEMath = require('ale.ALEMath')
 local curTime = 0
 
 function MainState:update(elapsed)
+    self.super:update(elapsed)
+
     curTime = curTime + elapsed
 
     local mouseX, mouseY = love.mouse.getPosition()

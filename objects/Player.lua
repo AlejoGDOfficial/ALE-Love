@@ -18,37 +18,11 @@ function Player:new(x, y, size)
 end
 
 function Player:draw()
+    self.super:draw()
+
     love.graphics.setColor(self.color.red / 255, self.color.green / 255, self.color.blue / 255)
 
     love.graphics.rectangle('fill', self.x, self.y, self.size, self.size)
-end
-
-local curTime = 0
-
-function Player:update(elapsed)
-    curTime = curTime + elapsed
-
-    if true then
-        return
-    end
-
-    local factor = self.speed * elapsed
-
-    if love.keyboard.isDown('right') then
-        self.x = self.x + factor
-    end
-
-    if love.keyboard.isDown('left') then
-        self.x = self.x - factor
-    end
-
-    if love.keyboard.isDown('up') then
-        self.y = self.y - factor
-    end
-
-    if love.keyboard.isDown('down') then
-        self.y = self.y + factor
-    end
 end
 
 function Player:screenCenter()

@@ -5,8 +5,11 @@ local ALEBasic = Class()
 function ALEBasic:new()
 end
 
+function ALEBasic:load()
+
+end
+
 function ALEBasic:update(elapsed)
-    print('' .. elapsed)
 end
 
 function ALEBasic.draw()

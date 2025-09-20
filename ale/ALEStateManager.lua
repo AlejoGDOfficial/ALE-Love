@@ -11,27 +11,27 @@ function ALEStateManager:new(initialState)
 end
 
 function ALEStateManager:load()
+    self.super:load()
+
     self.current:load()
 end
 
 function ALEStateManager:draw()
-    if self.current.draw then
-        self.current:draw()
-    end
+    self.super:draw()
+
+    self.current:draw()
 end
 
 function ALEStateManager:update(elapsed)
-    if self.current.update then
-        self.current:update(elapsed)
-    end
+    self.super:update(elapsed)
+
+    self.current:update(elapsed)
 end
 
 function ALEStateManager:switch(nextState)
     self.current = nextState
 
-    if self.current.load then
-        self.current:load()
-    end
+    self.current:load()
 end
 
 return ALEStateManager

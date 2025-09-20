@@ -13,14 +13,20 @@ function ALEGame:new(initialState)
 end
 
 function ALEGame:load()
+    self.super:load()
+
     self.stateManager:load()
 end
 
 function ALEGame:draw()
+    self.super:draw()
+
     self.stateManager:draw()
 end
 
 function ALEGame:update(elapsed)
+    self.super:update(elapsed)
+
     self.stateManager:update(elapsed)
 end
 
