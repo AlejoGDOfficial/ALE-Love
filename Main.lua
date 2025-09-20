@@ -1,8 +1,8 @@
 local ALEGame = require('ale.ALEGame')
 
-local MainState = require('states.MainState')
+local TestState = require('states.TestState')
 
-local game = ALEGame:new(MainState:new())
+local game = ALEGame:new(TestState:new())
 
 function love.load()
     game:load()
