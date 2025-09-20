@@ -1,21 +1,20 @@
-local Player = {}
+local ALEBasic = require('ale.ALEBasic')
+
+local Player = ALEBasic:extend()
 
 function Player:new(x, y, size)
-    local obj = {
-        x = x,
-        y = y,
-        size = size or 100,
-        speed = 500,
-        color = {
-            red = 255,
-            green = 255,
-            blue = 255
-        }
+    self.super:new()
+
+    self.x = x or 0
+    self.y = y or 0
+    self.size = size or 0
+    self.color = {
+        red = 255,
+        green = 255,
+        blue = 255
     }
 
-    self.__index = self
-
-    return setmetatable(obj, self)
+    return self
 end
 
 function Player:draw()
