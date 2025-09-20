@@ -18,6 +18,8 @@ function ALESprite:new(x, y, graphic)
         y = 0
     }
 
+    self.alpha = 1
+
     self.angle = 0
 
     self.color = {
@@ -84,6 +86,8 @@ end
 
 function ALESprite:draw()
     self.super:draw()
+
+    print('Sprite Draw')
 
     if self.visible == false then
         return

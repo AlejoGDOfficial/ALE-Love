@@ -12,8 +12,7 @@ end
 function ALEBasic:update(elapsed)
 end
 
-function ALEBasic.draw()
-
+function ALEBasic:draw()
 end
 
 function ALEBasic:destroy()
