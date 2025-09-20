@@ -1,4 +1,4 @@
-local ALEStateManager = require('ale.ALEStateManager')
+local ALEStateManager = require('ale.backend.ALEStateManager')
 
 local ALEBasic = require('ale.ALEBasic')
 

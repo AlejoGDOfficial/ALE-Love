@@ -1,10 +1,8 @@
-local ALEState = require('ale.ALEState')
-
-local Sprite = require('objects.Sprite')
-
 local TestState = ALEState:extend()
 
-local spr = Sprite:new(0, 0)
+local spr = ALESprite:new(0, 0, 'dni')
+spr.scale.x, spr.scale.y = 0.5, 0.5
+spr:screenCenter()
 
 function TestState:load()
     self.super:load()
@@ -17,7 +15,7 @@ local curTime = 0
 function TestState:update(elapsed)
     curTime = curTime + elapsed
 
-    spr.angle = math.sin(curTime) * 10
+    self.super:update(elapsed)
 end
 
 return TestState

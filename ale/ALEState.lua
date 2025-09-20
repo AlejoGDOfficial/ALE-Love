@@ -1,4 +1,4 @@
-local ALEGroup = require('ale.ALEGroup')
+local ALEGroup = require('ale.group.ALEGroup')
 
 ALEState = ALEGroup:extend()
 

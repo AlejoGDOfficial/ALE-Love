@@ -4,6 +4,8 @@ ffi.cdef "int SetProcessDPIAware();"
 
 ffi.load("user32").SetProcessDPIAware()
 
+require('import')
+
 function love.conf(game)
     game.window.title = 'ALE Love'
     game.window.width = 1280
