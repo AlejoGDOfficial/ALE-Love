@@ -1,15 +1,15 @@
 local ALEStateManager = require('ale.ALEStateManager')
 
-local ALEGame = {}
+local ALEBasic = require('ale.ALEBasic')
+
+local ALEGame = ALEBasic:extend()
 
 function ALEGame:new(initialState)
-    local variables = {
-        stateManager = ALEStateManager:new(initialState)
-    }
+    self.super:new()
 
-    self.__index = self
+    self.stateManager = ALEStateManager:new(initialState)
 
-    return setmetatable(variables, self)
+    return self
 end
 
 function ALEGame:load()

@@ -1,13 +1,13 @@
-local ALEStateManager = {}
+local ALEBasic = require('ale.ALEBasic')
+
+local ALEStateManager = ALEBasic:extend()
 
 function ALEStateManager:new(initialState)
-    local variables = {
-        current = initialState
-    }
+    self.super:new()
 
-    self.__index = self
+    self.current = initialState
 
-    return setmetatable(variables, self)
+    return self
 end
 
 function ALEStateManager:load()

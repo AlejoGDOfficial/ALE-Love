@@ -1,13 +1,13 @@
-local ALEState = {}
+local ALEBasic = require('ale.ALEBasic')
+
+local ALEState = ALEBasic:extend()
 
 function ALEState:new()
-    local variables = {
-        members = {}
-    }
+    self.super:new()
 
-    self.__index = self
+    self.members = {}
 
-    return setmetatable(variables, self)
+    return self
 end
 
 function ALEState:load()

@@ -1,13 +1,5 @@
 local ALEMath = {}
 
-function ALEMath:new()
-    local variables = {}
-
-    self.__index = self
-
-    return setmetatable(variables, self)
-end
-
 function ALEMath.fpsLerp(v1, v2, ratio, elapsed)
     return v1 + (v2 - v1) * ALEMath.fpsRatio(ratio, elapsed)
 end

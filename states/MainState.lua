@@ -1,23 +1,13 @@
 local ALEState = require('ale.ALEState')
 
-local MainState = setmetatable({}, { __index = ALEState })
-
-MainState.__index = MainState
-
-function MainState:new()
-    local obj = ALEState:new()
-
-    setmetatable(obj, MainState)
-
-    return obj
-end
+local MainState = ALEState:extend()
 
 local Player = require('objects.Player')
 
 local player = Player:new(0, 0, 100)
 player:screenCenter()
 player.color.red = 0
-player.color.green = 150
+player.color.green = 155
 
 function MainState:load()
     self:add(player)
@@ -38,6 +28,16 @@ function MainState:update(elapsed)
     player.y = ALEMath.fpsLerp(player.y, mouseY - player.size / 2, 0.5, elapsed)
 
     ALEState.update(self, elapsed)
+end
+
+function love.mousepressed(x, y, isTouch, pressed)
+    player.color.blue = 155
+    player.color.green = 55
+end
+
+function love.mousereleased(x, y, isTouch, pressed)
+    player.color.blue = 255
+    player.color.green = 155
 end
 
 return MainState

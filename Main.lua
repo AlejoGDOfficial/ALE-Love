@@ -13,5 +13,5 @@ function love.update(elapsed)
 end
 
 function love.draw()
-    game:draw(elapsed)
+    game:draw()
 end
