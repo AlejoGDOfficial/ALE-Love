@@ -1,33 +1,29 @@
-local ALEStateManager = require('ale.backend.ALEStateManager')
-
 local ALEBasic = require('ale.ALEBasic')
 
 local ALEGame = ALEBasic:extend()
 
-function ALEGame:new(initialState)
-    self.super:new()
+function ALEGame:__init(initialState)
+    self.super:__init()
 
-    self.stateManager = ALEStateManager:new(initialState)
-
-    return self
+    self.state = initialState
 end
 
 function ALEGame:load()
     self.super:load()
 
-    self.stateManager:load()
-end
-
-function ALEGame:draw()
-    self.super:draw()
-
-    self.stateManager:draw()
+    self.state:load()
 end
 
 function ALEGame:update(elapsed)
     self.super:update(elapsed)
 
-    self.stateManager:update(elapsed)
+    self.state:update(elapsed)
+end
+
+function ALEGame:draw()
+    self.super:draw()
+
+    self.state:draw()
 end
 
 return ALEGame

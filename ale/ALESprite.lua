@@ -2,8 +2,8 @@ local ALEBasic = require('ale.ALEBasic')
 
 local ALESprite = ALEBasic:extend()
 
-function ALESprite:new(x, y, graphic)
-    self.super:new()
+function ALESprite:__init(x, y, graphic)
+    self.super:__init()
 
     self.x = x or 0
 
@@ -71,6 +71,7 @@ function ALESprite:makeGraphic(width, height, color)
     )
 
     self.graphic = love.graphics.newImage(imgData)
+
     self:updateHitbox()
 end
 
@@ -85,10 +86,6 @@ function ALESprite:updateHitbox()
 end
 
 function ALESprite:draw()
-    self.super:draw()
-
-    print('Sprite Draw')
-
     if self.visible == false then
         return
     end
@@ -100,8 +97,6 @@ function ALESprite:draw()
 end
 
 function ALESprite:update(elapsed)
-    self.super:update(elapsed)
-
     self.velocity.y = self.velocity.y + self.acceleration.y
 
     self.y = self.y + self.velocity.y * elapsed

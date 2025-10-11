@@ -1,27 +1,35 @@
-local ExtSpr = ALESprite:extend()
+local Ch3erea = ALESprite:extend()
 
-function ExtSpr:new()
-    self.super:new(0, 0, 'dni')
+function Ch3erea:__init()
+    self.super:__init(0, 0, 'dni')
+end
 
-    self.scale:set(0.25, 0.25)
+local SubCh3erea = Ch3erea:extend()
+
+function SubCh3erea:__init()
+    self.super:__init()
 
     self.x = 100
-
-    return self
 end
+
+local curTime = 0
+
+function SubCh3erea:update(elapsed)
+    self.super:update(elapsed)
+
+    curTime = curTime + elapsed
+
+    self.x = math.sin(curTime) * 100
+end
+
+local ALEState = require('ale.ALEState')
 
 local TestState = ALEState:extend()
 
-local spr = ExtSpr:new()
-
 function TestState:load()
-    self:add(spr)
-end
+    self.super:load()
 
-function TestState:draw()
-    print('State Draw')
-
-    self.super:draw()
+    self:add(SubCh3erea:new())
 end
 
 return TestState

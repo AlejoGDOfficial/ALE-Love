@@ -1,5 +1,9 @@
 local ALEGroup = require('ale.group.ALEGroup')
 
-ALEState = ALEGroup:extend()
+local ALEState = ALEGroup:extend()
+
+function ALEState:load()
+    self.super:load()
+end
 
 return ALEState

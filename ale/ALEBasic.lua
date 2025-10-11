@@ -1,22 +1,16 @@
-local Class = require('ale.std.Class')
+local ALEBasic = Class.create()
 
-local ALEBasic = Class()
-
-function ALEBasic:new()
+function ALEBasic:__init()
+    print('New ALEBasic')
 end
 
 function ALEBasic:load()
-
 end
 
 function ALEBasic:update(elapsed)
 end
 
 function ALEBasic:draw()
-end
-
-function ALEBasic:destroy()
-
 end
 
 return ALEBasic

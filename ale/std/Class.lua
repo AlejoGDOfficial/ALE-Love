@@ -1,29 +1,31 @@
-local function Class(base)
-    local cls = {}
+local Class = {}
 
-    cls.__index = cls
+function Class.create(base)
+    local c = {}
 
-    setmetatable(cls, { __index = base })
+    c.__index = c
 
-    function cls:new(...)
-        local obj = setmetatable({}, cls)
+    function c:new(...)
+        local obj = setmetatable({}, c)
 
-        if cls.super and cls.super.new then
-            obj.super.new(obj, ...)
+        if c.__init then
+            c.__init(obj, ...)
         end
 
         return obj
     end
 
-    function cls:extend()
-        local sub = Class(self)
+    if base then
+        setmetatable(c, { __index = base })
 
-        sub.super = self
-
-        return sub
+        c.super = base
     end
 
-    return cls
+    function c:extend()
+        return Class.create(self)
+    end
+
+    return c
 end
 
 return Class
