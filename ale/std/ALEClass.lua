@@ -10,4 +10,8 @@ function ALEClass:new()
     return obj
 end
 
+function ALEClass.extend(class)
+    return setmetatable({}, { __index = class or ALEClass })
+end
+
 return ALEClass

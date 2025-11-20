@@ -9,7 +9,7 @@ local Paths = {
 }
 
 function Paths.getPath(file)
-    return Paths.assets .. '/' .. file
+    return love.graphics.newImage(Paths.assets .. '/' .. file)
 end
 
 function Paths.image(file)
