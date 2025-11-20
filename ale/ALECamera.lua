@@ -24,9 +24,18 @@ end
 
 function ALECamera:attach()
     love.graphics.push()
-    love.graphics.scale(self.zoom)
-    love.graphics.translate(-self.scroll.x - self.width / 2 + (self.width / 2 / self.zoom),
-        -self.scroll.y - self.height / 2 + (self.height / 2 / self.zoom))
+
+    local zoom = self.zoom
+    love.graphics.scale(zoom)
+
+    local halfW = self.width * 0.5
+    local halfH = self.height * 0.5
+    local invZoom = 1 / zoom
+
+    love.graphics.translate(
+        -self.scroll.x - halfW + (halfW * invZoom),
+        -self.scroll.y - halfH + (halfH * invZoom)
+    )
 end
 
 function ALECamera:detach()
@@ -36,17 +45,16 @@ end
 function ALECamera:draw()
     self:attach()
 
-    for i, obj in ipairs(self._queue) do
-        self:drawObject(obj)
+    local q = self._queue
+    for i = 1, #q do
+        self:drawObject(q[i])
     end
 
     self:detach()
 end
 
 function ALECamera:queue(obj)
-    if obj then
-        table.insert(self._queue, obj)
-    end
+    self._queue[#self._queue + 1] = obj
 end
 
 function ALECamera:drawObject(obj)
