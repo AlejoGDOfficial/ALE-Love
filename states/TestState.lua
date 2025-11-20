@@ -9,7 +9,17 @@ function Ch3erea:new()
     obj.scale.y = 0.25
     obj:updateHitbox()
 
+    obj.curTime = 0
+
     return obj
+end
+
+function Ch3erea:update(elapsed)
+    ALESprite.update(self, elapsed)
+
+    self.curTime = self.curTime + elapsed
+
+    self.x = math.sin(self.curTime) * 100 + 100
 end
 
 local ch3erea0 = Ch3erea:new()
