@@ -1,5 +1,3 @@
-local ALEBasic = require('ale.ALEBasic')
-
 local ALEGroup = ALEClass.extend(ALEBasic)
 
 function ALEGroup:new()

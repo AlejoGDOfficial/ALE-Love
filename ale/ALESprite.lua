@@ -1,9 +1,9 @@
-local ALEBasic = require('ale.ALEBasic')
-
 local ALESprite = ALEClass.extend(ALEBasic)
 
 function ALESprite:new(x, y, graphic)
     local obj = ALEBasic.new(self)
+
+    obj.cameras = { ALE_G.cameras.members[1] }
 
     obj.x = x or 0
 
@@ -13,6 +13,7 @@ function ALESprite:new(x, y, graphic)
         x = 0,
         y = 0
     }
+
     obj.acceleration = {
         x = 0,
         y = 0
@@ -86,14 +87,11 @@ function ALESprite:updateHitbox()
 end
 
 function ALESprite:draw()
-    if self.visible == false then
-        return
+    for i, camera in ipairs(self.cameras) do
+        if camera then
+            camera:queue(self)
+        end
     end
-
-    love.graphics.setColor(self.color.r / 255, self.color.g / 255, self.color.b / 255, self.alpha)
-
-    love.graphics.draw(self.graphic, self.x + self.origin.x, self.y + self.origin.y, self.angle * math.pi / 180,
-        self.scale.x, self.scale.y, self.origin.x / self.scale.x, self.origin.y / self.scale.y)
 end
 
 function ALESprite:update(elapsed)
