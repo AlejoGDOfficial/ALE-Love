@@ -1,5 +1,3 @@
-Class = require('ale.std.Class')
+Paths = require('ale.ALEPaths')
 
-ALEState = require('ale.ALEState')
-
-ALESprite = require('ale.ALESprite')
+ALEClass = require('ale.std.ALEClass')

@@ -1,29 +1,12 @@
 local ALEBasic = require('ale.ALEBasic')
 
-local ALEGame = ALEBasic:extend()
+local ALEGame = ALEBasic:new()
 
-function ALEGame:__init(initialState)
-    self.super:__init()
-
-    self.state = initialState
-end
-
-function ALEGame:load()
-    self.super:load()
-
-    self.state:load()
+function ALEGame:new()
+    return self
 end
 
 function ALEGame:update(elapsed)
-    self.super:update(elapsed)
-
-    self.state:update(elapsed)
-end
-
-function ALEGame:draw()
-    self.super:draw()
-
-    self.state:draw()
 end
 
 return ALEGame
