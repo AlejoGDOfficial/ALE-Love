@@ -5,15 +5,23 @@ local ALEPaths = {
     music    = 'music',
 
     imageExt = '.png',
-    audioExt = '.ogg'
+    audioExt = '.ogg',
+
+    cachedImages = {}
 }
 
 function ALEPaths.getPath(file)
-    return love.graphics.newImage(ALEPaths.assets .. '/' .. file)
+    return ALEPaths.assets .. '/' .. file
 end
 
 function ALEPaths.image(file)
-    return ALEPaths.getPath(ALEPaths.images .. '/' .. file .. ALEPaths.imageExt)
+    local path =  ALEPaths.getPath(ALEPaths.images .. '/' .. file .. ALEPaths.imageExt)
+
+    if not ALEPaths.cachedImages[file] then
+        ALEPaths.cachedImages[file] = love.graphics.newImage(path)
+    end
+
+    return ALEPaths.cachedImages[file]
 end
 
 return ALEPaths

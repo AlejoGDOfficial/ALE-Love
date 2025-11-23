@@ -19,6 +19,8 @@ function ALECamera:new(x, y, width, height)
 
     obj._queue = {}
 
+    obj._batches = {}
+
     return obj
 end
 
