@@ -7,7 +7,7 @@ function love.load()
 end
 
 function love.update(elapsed)
-    ALE_G.update()
+    ALE_G.update(elapsed)
 end
 
 function love.draw()

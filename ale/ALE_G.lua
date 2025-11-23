@@ -41,11 +41,11 @@ end
 setmetatable(ALE_G, {
     __index = function(_, key)
         if key == 'camera' then
-            return ALEGame.instance and ALEGame.instance.cameras.members[1] or nil
+            return ALE_G.game and ALE_G.game.cameras.members[1] or nil
         end
 
         if key == 'cameras' then
-            return ALEGame.instance and ALEGame.instance.cameras or nil
+            return ALE_G.game and ALE_G.game.cameras or nil
         end
 
         return rawget(ALE_G, key)

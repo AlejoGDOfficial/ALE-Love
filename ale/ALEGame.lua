@@ -5,11 +5,11 @@ local ALEGame = ALEBasic.extend()
 function ALEGame:new(initialState)
     local obj = ALEBasic.new(self)
 
-    obj.state = initialState:new()
-
     self.cameras = ALECameraFrontEnd:new()
 
     self.cameras:add(ALECamera:new())
+
+    obj.state = initialState:new()
 
     return obj
 end
