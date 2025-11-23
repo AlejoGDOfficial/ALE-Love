@@ -1,26 +1,20 @@
 local TestState = ALEClass.extend(ALEState)
 
-function TestState:load()
-    for i = 1, 100 do
-        local spr = ALESprite:new(100, 100, 'dni')
-        spr.scale.x, spr.scale.y = 0.15, 0.15
-        spr:updateHitbox()
-        self:add(spr)
-    end
-end
-
 local curTime = 0
 
 function TestState:update(elapsed)
     ALEState.update(self, elapsed)
 
-    curTime = curTime + elapsed
+    if ALE_G.keys.justPressed['up'] then
+        print('oso')
+    end
 
-    for i, members in ipairs(self.members) do
-        members.x = math.sin(curTime + i) * 100 + 200
-        members.y = math.cos(curTime + i) * 100 + 200
+    if ALE_G.keys.pressed['up'] then
+        print('osoooo')
+    end
 
-        members.angle = members.angle + 10 * elapsed
+    if ALE_G.keys.justReleased['up'] then
+        print('no mas oso')
     end
 end
 
