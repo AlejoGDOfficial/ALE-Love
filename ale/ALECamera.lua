@@ -45,16 +45,17 @@ end
 function ALECamera:draw()
     self:attach()
 
-    local q = self._queue
-    for i = 1, #q do
-        self:drawObject(q[i])
+    for _, obj in ipairs(self._queue) do
+        self:drawObject(obj)
     end
 
     self:detach()
+
+    self._queue = {}
 end
 
 function ALECamera:queue(obj)
-    self._queue[#self._queue + 1] = obj
+    table.insert(self._queue, obj)
 end
 
 function ALECamera:drawObject(obj)
