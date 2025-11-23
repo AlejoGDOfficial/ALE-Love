@@ -95,11 +95,11 @@ function ALESprite:draw()
 end
 
 function ALESprite:update(elapsed)
-    self.velocity.x = self.velocity.x + self.acceleration.x
+    self.velocity.x = self.velocity.x + self.acceleration.x * elapsed
 
     self.x = self.x + self.velocity.x * elapsed
 
-    self.velocity.y = self.velocity.y + self.acceleration.y
+    self.velocity.y = self.velocity.y + self.acceleration.y * elapsed
 
     self.y = self.y + self.velocity.y * elapsed
 end
