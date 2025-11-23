@@ -23,6 +23,18 @@ function ALEPaths.init()
     }
 end
 
+local function cachePath(file, id)
+    local data = ALEPaths.config[id]
+
+    local path = ALEPaths.getPath(data.path .. file .. data.extension)
+
+    if not data.cache[file] then
+        data.cache[file] = data.method(path)
+    end
+
+    return data.cache[file]
+end
+
 function ALEPaths.getPath(file)
     return 'assets/' .. file
 end
@@ -37,18 +49,6 @@ end
 
 function ALEPaths.music(file)
     return cachePath(file, 'music')
-end
-
-function cachePath(file, id)
-    local data = ALEPaths.config[id]
-
-    local path = ALEPaths.getPath(data.path .. file .. data.extension)
-
-    if not data.cache[file] then
-        data.cache[file] = data.method(path)
-    end
-
-    return data.cache[file]
 end
 
 return ALEPaths
