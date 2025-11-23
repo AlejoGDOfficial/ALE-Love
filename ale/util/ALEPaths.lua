@@ -1,27 +1,54 @@
-local ALEPaths = {
-    assets   = 'assets',
-    images   = 'images',
-    sounds   = 'sounds',
-    music    = 'music',
+local ALEPaths = {}
 
-    imageExt = '.png',
-    audioExt = '.ogg',
-
-    cachedImages = {}
-}
+function ALEPaths.init()
+    ALEPaths.config = {
+        image = {
+            path = 'images/',
+            extension = '.png',
+            method = love.graphics.newImage,
+            cache = {}
+        },
+        sound = {
+            path = 'sounds/',
+            extension = '.ogg',
+            method = love.audio.newSource,
+            cache = {}
+        },
+        music = {
+            path = 'music/',
+            extension = '.ogg',
+            method = love.audio.newSource,
+            cache = {}
+        }
+    }
+end
 
 function ALEPaths.getPath(file)
-    return ALEPaths.assets .. '/' .. file
+    return 'assets/' .. file
 end
 
 function ALEPaths.image(file)
-    local path =  ALEPaths.getPath(ALEPaths.images .. '/' .. file .. ALEPaths.imageExt)
+    return cachePath(file, 'image')
+end
 
-    if not ALEPaths.cachedImages[file] then
-        ALEPaths.cachedImages[file] = love.graphics.newImage(path)
+function ALEPaths.sound(file)
+    return cachePath(file, 'sound')
+end
+
+function ALEPaths.music(file)
+    return cachePath(file, 'music')
+end
+
+function cachePath(file, id)
+    local data = ALEPaths.config[id]
+
+    local path = ALEPaths.getPath(data.path .. file .. data.extension)
+
+    if not data.cache[file] then
+        data.cache[file] = data.method(path)
     end
 
-    return ALEPaths.cachedImages[file]
+    return data.cache[file]
 end
 
 return ALEPaths

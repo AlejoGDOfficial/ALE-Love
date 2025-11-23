@@ -9,6 +9,8 @@ local ALE_G = {
 }
 
 function ALE_G.init(initialState)
+    ALEPaths.init()
+
     ALE_G.keys = ALEKeyManager:new()
 
     ALE_G.game = ALEGame:new(initialState)
