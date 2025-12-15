@@ -1,11 +1,10 @@
 local ALEGame = require('ale.ALEGame')
 
-local ALEKeyManager = require('ale.input.ALEKeyManager')
-
 local ALE_G = {
     elapsed = 0,
     keys = nil,
-    game = nil
+    game = nil,
+    sound = nil
 }
 
 function ALE_G.init(initialState)
@@ -42,15 +41,7 @@ end
 
 setmetatable(ALE_G, {
     __index = function(_, key)
-        if key == 'camera' then
-            return ALE_G.game and ALE_G.game.cameras.members[1] or nil
-        end
-
-        if key == 'cameras' then
-            return ALE_G.game and ALE_G.game.cameras or nil
-        end
-
-        return rawget(ALE_G, key)
+        return rawget(ALE_G, key) or ALE_G.game[key]
     end
 })
 

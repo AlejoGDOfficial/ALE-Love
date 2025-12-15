@@ -1,3 +1,5 @@
+local ALEPoint = require('ale.math.ALEPoint')
+
 local ALESprite = ALEClass.extend(ALEBasic)
 
 function ALESprite:new(x, y, graphic)
@@ -9,15 +11,9 @@ function ALESprite:new(x, y, graphic)
 
     this.y = y or 0
 
-    this.velocity = {
-        x = 0,
-        y = 0
-    }
+    this.velocity = ALEPoint:new()
 
-    this.acceleration = {
-        x = 0,
-        y = 0
-    }
+    this.acceleration = ALEPoint:new()
 
     this.alpha = 1
 
@@ -29,23 +25,11 @@ function ALESprite:new(x, y, graphic)
         b = 255
     }
 
-    this.scale = {
-        x = 1,
-        y = 1,
-        set = function(s, sX, sY)
-            s.x = sX or s.x
-            s.y = sY or s.y
-        end
-    }
+    this.scale = ALEPoint:new(1, 1)
 
-    this.origin = {
-        x = 0,
-        y = 0,
-        set = function(s, sX, sY)
-            s.x = sX or s.x
-            s.y = sY or s.y
-        end
-    }
+    this.origin = ALEPoint:new()
+
+    this.offset = ALEPoint:new()
 
     this.graphic = nil
 
