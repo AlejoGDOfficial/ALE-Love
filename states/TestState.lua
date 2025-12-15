@@ -2,8 +2,6 @@ local TestState = ALEClass.extend(ALEState)
 
 local ALESound = require('ale.sound.ALESound')
 
-local ALEGroup = require('ale.group.ALEGroup')
-
 function TestState:load()
     self.sound = ALESound:new('music')
     self.sound:play()
@@ -19,6 +17,8 @@ function TestState:load()
     self.staticCh3erea:updateHitbox()
     self.staticCh3erea.scrollFactor:set(0.5, 0.5)
     self:add(self.staticCh3erea)
+
+    ALE_G.camera.zoom = 2
 end
 
 local curTime = 0
@@ -44,6 +44,14 @@ function TestState:update(elapsed)
 
     if ALE_G.keys.pressed['right'] then
         ALE_G.camera.scroll.x = ALE_G.camera.scroll.x + vel
+    end
+
+    if ALE_G.keys.pressed['q'] then
+        ALE_G.camera.zoom = ALE_G.camera.zoom - 0.25
+    end
+
+    if ALE_G.keys.pressed['e'] then
+        ALE_G.camera.zoom = ALE_G.camera.zoom + 0.25
     end
 end
 
