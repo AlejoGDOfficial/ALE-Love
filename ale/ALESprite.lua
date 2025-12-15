@@ -1,35 +1,35 @@
 local ALESprite = ALEClass.extend(ALEBasic)
 
 function ALESprite:new(x, y, graphic)
-    local obj = ALEBasic.new(self)
+    local this = ALEBasic.new(self)
 
-    obj.cameras = { ALE_G.cameras.members[1] }
+    this.cameras = { ALE_G.cameras.members[1] }
 
-    obj.x = x or 0
+    this.x = x or 0
 
-    obj.y = y or 0
+    this.y = y or 0
 
-    obj.velocity = {
+    this.velocity = {
         x = 0,
         y = 0
     }
 
-    obj.acceleration = {
+    this.acceleration = {
         x = 0,
         y = 0
     }
 
-    obj.alpha = 1
+    this.alpha = 1
 
-    obj.angle = 0
+    this.angle = 0
 
-    obj.color = {
+    this.color = {
         r = 255,
         g = 255,
         b = 255
     }
 
-    obj.scale = {
+    this.scale = {
         x = 1,
         y = 1,
         set = function(s, sX, sY)
@@ -38,7 +38,7 @@ function ALESprite:new(x, y, graphic)
         end
     }
 
-    obj.origin = {
+    this.origin = {
         x = 0,
         y = 0,
         set = function(s, sX, sY)
@@ -47,17 +47,17 @@ function ALESprite:new(x, y, graphic)
         end
     }
 
-    obj.graphic = nil
+    this.graphic = nil
 
     if graphic then
-        obj:loadGraphic(graphic)
+        this:loadGraphic(graphic)
     else
-        obj:makeGraphic(100, 100, { r = 255, g = 0, b = 255 })
+        this:makeGraphic(100, 100, { r = 255, g = 0, b = 255 })
     end
 
-    obj.visible = true
+    this.visible = true
 
-    return obj
+    return this
 end
 
 function ALESprite:makeGraphic(width, height, color)

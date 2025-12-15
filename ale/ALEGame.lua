@@ -3,15 +3,15 @@ local ALECameraFrontEnd = require('ale.frontEnds.ALECameraFrontEnd')
 local ALEGame = ALEBasic.extend()
 
 function ALEGame:new(initialState)
-    local obj = ALEBasic.new(self)
+    local this = ALEBasic.new(self)
 
-    self.cameras = ALECameraFrontEnd:new()
+    this.cameras = ALECameraFrontEnd:new()
 
-    self.cameras:add(ALECamera:new())
+    this.cameras:add(ALECamera:new())
 
-    obj.state = initialState:new()
+    this.state = initialState:new()
 
-    return obj
+    return this
 end
 
 function ALEGame:load()

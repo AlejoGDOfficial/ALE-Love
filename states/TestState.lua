@@ -1,40 +1,47 @@
 local TestState = ALEClass.extend(ALEState)
 
-function TestState:load()
-    self.ch3erea = ALESprite:new(100, 100, 'dni')
-    self.ch3erea.scale:set(0.1, 0.1)
-    self.ch3erea:updateHitbox()
+local ALESound = require('ale.sound.ALESound')
 
-    self:add(self.ch3erea)
+local ALEGroup = require('ale.group.ALEGroup')
+
+function TestState:load()
+    self.sound = ALESound:new('music')
+    self.sound:play()
+    self.sound:pause()
+
+    self.che3ereas = ALEGroup:new()
+    self:add(self.che3ereas)
 end
+
+local timer = 0
+
+local curTime = 0
 
 function TestState:update(elapsed)
     ALEState.update(self, elapsed)
 
-    self.ch3erea.velocity.x = 0
-    self.ch3erea.velocity.y = 0
+    timer = timer + elapsed
 
-    if ALE_G.keys.pressed['up'] then
-        self.ch3erea.velocity.y = -100
+    if timer > 0.05 then
+        local ch3erea = ALESprite:new(100, 100, 'dni')
+        ch3erea.scale:set(0.1, 0.1)
+        ch3erea:updateHitbox()
+        ch3erea.velocity.x = 1000
+        ch3erea.angle = #self.che3ereas.members * 12.5
+
+        self.che3ereas:add(ch3erea)
+
+        print(#self.che3ereas.members)
+
+        timer = 0
     end
 
-    if ALE_G.keys.pressed['down'] then
-        self.ch3erea.velocity.y = 100
-    end
+    curTime = curTime + elapsed
 
-    if ALE_G.keys.pressed['left'] then
-        self.ch3erea.velocity.x = -100
+    for i, ch3erea in ipairs(self.che3ereas.members) do
+        ch3erea.y = 200 + math.sin(curTime + i) * 50
+        ch3erea.angle = ch3erea.angle + 10 * elapsed
     end
-
-    if ALE_G.keys.pressed['right'] then
-        self.ch3erea.velocity.x = 100
-    end
-
-    if ALE_G.keys.justPressed['space'] then
-        self.ch3erea.angle = self.ch3erea.angle > 0 and -10 or 10
-    end
-
-    self.ch3erea.angle = ALEMath.fpsLerp(self.ch3erea.angle, 0, 0.1)
 end
 
 return TestState

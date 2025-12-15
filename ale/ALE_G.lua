@@ -13,7 +13,7 @@ function ALE_G.init(initialState)
 
     ALE_G.keys = ALEKeyManager:new()
 
-    ALE_G.game = ALEGame:new(initialState)
+    ALE_G.game = ALEGame:new(initialState:new())
 end
 
 function ALE_G.load()

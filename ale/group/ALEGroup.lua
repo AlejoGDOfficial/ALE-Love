@@ -1,11 +1,11 @@
 local ALEGroup = ALEClass.extend(ALEBasic)
 
 function ALEGroup:new()
-    local obj = ALEBasic.new(self)
+    local this = ALEBasic.new(self)
 
-    obj.members = {}
+    this.members = {}
 
-    return obj
+    return this
 end
 
 function ALEGroup:load()

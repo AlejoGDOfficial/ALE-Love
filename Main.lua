@@ -1,7 +1,7 @@
-local TestState = require('states.TestState')
+local InitialState = require('states.TestState')
 
 function love.load()
-    ALE_G.init(TestState)
+    ALE_G.init(InitialState)
 
     ALE_G.load()
 end

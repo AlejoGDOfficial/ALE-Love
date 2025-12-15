@@ -11,13 +11,17 @@ function ALEPaths.init()
         sound = {
             path = 'sounds/',
             extension = '.ogg',
-            method = love.audio.newSource,
+            method = function(file)
+                return love.sound.newDecoder(file)
+            end,
             cache = {}
         },
         music = {
             path = 'music/',
             extension = '.ogg',
-            method = love.audio.newSource,
+            method = function(file)
+                return love.sound.newDecoder(file)
+            end,
             cache = {}
         }
     }

@@ -1,9 +1,9 @@
 local ALECamera = ALEClass.extend(ALEBasic)
 
 function ALECamera:new(x, y, width, height)
-    local obj = ALEBasic.new(self)
+    local this = ALEBasic.new(self)
 
-    obj.scroll = {
+    this.scroll = {
         x = 0,
         y = 0,
         set = function(s, sX, sY)
@@ -12,16 +12,16 @@ function ALECamera:new(x, y, width, height)
         end
     }
 
-    obj.zoom = 1
+    this.zoom = 1
 
-    obj.width = width or love.graphics.getWidth()
-    obj.height = height or love.graphics.getHeight()
+    this.width = width or love.graphics.getWidth()
+    this.height = height or love.graphics.getHeight()
 
-    obj._queue = {}
+    this._queue = {}
 
-    obj._batches = {}
+    this._batches = {}
 
-    return obj
+    return this
 end
 
 function ALECamera:attach()
