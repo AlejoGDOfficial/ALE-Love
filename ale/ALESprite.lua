@@ -31,6 +31,8 @@ function ALESprite:new(x, y, graphic)
 
     this.offset = ALEPoint:new()
 
+    this.scrollFactor = ALEPoint:new(1, 1)
+
     this.graphic = nil
 
     if graphic then

@@ -13,6 +13,12 @@ function TestState:load()
     self.ch3erea:updateHitbox()
     self.ch3erea:screenCenter()
     self:add(self.ch3erea)
+
+    self.staticCh3erea = ALESprite:new(0, 0, 'dni')
+    self.staticCh3erea.scale:set(0.1, 0.1)
+    self.staticCh3erea:updateHitbox()
+    self.staticCh3erea.scrollFactor:set(0.5, 0.5)
+    self:add(self.staticCh3erea)
 end
 
 local curTime = 0
@@ -22,23 +28,22 @@ function TestState:update(elapsed)
 
     curTime = curTime + elapsed
 
-    self.ch3erea.velocity.x = 0
-    self.ch3erea.velocity.y = 0
+    local vel = 300 * elapsed
 
-    if ALE_G.keys['up'] then
-        self.ch3erea.velocity.y = -100
+    if ALE_G.keys.pressed['up'] then
+        ALE_G.camera.scroll.y = ALE_G.camera.scroll.y - vel
     end
 
-    if ALE_G.keys['down'] then
-        self.ch3erea.velocity.y = 100
+    if ALE_G.keys.pressed['down'] then
+        ALE_G.camera.scroll.y = ALE_G.camera.scroll.y + vel
     end
 
-    if ALE_G.keys['left'] then
-        self.ch3erea.velocity.x = -100
+    if ALE_G.keys.pressed['left'] then
+        ALE_G.camera.scroll.x = ALE_G.camera.scroll.x - vel
     end
 
-    if ALE_G.keys['right'] then
-        self.ch3erea.velocity.x = 100
+    if ALE_G.keys.pressed['right'] then
+        ALE_G.camera.scroll.x = ALE_G.camera.scroll.x + vel
     end
 end
 
