@@ -57,7 +57,7 @@ function ALECamera:queue(obj)
 end
 
 function ALECamera:drawObject(obj)
-    if not obj.visible then
+    if obj.alpha <= 0 or not obj.visible or not obj.graphic then
         return
     end
 

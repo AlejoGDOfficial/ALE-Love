@@ -8,6 +8,12 @@ function ALEPaths.init()
             method = love.graphics.newImage,
             cache = {}
         },
+        video = {
+            path = 'videos/',
+            extension = '.ogv',
+            method = love.graphics.newVideo,
+            cache = {}
+        },
         sound = {
             path = 'sounds/',
             extension = '.ogg',
@@ -45,6 +51,10 @@ end
 
 function ALEPaths.image(file)
     return cachePath(file, 'image')
+end
+
+function ALEPaths.video(file)
+    return cachePath(file, 'video')
 end
 
 function ALEPaths.sound(file)

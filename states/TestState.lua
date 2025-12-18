@@ -7,16 +7,8 @@ function TestState:load()
     self.sound:play()
 
     self.ch3erea = ALESprite:new(0, 0, 'dni')
-    self.ch3erea.scale:set(0.1, 0.1)
-    self.ch3erea:updateHitbox()
-    self.ch3erea:screenCenter()
     self:add(self.ch3erea)
-
-    self.staticCh3erea = ALESprite:new(0, 0, 'dni')
-    self.staticCh3erea.scale:set(0.1, 0.1)
-    self.staticCh3erea:updateHitbox()
-    self.staticCh3erea.scrollFactor:set(0.5, 0.5)
-    self:add(self.staticCh3erea)
+    self.ch3erea.color.b = 0
 
     ALE_G.camera.zoom = 2
 end
