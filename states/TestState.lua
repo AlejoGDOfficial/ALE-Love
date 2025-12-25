@@ -13,6 +13,10 @@ function TestState:load()
     self.ch3erea:updateHitbox()
     self.ch3erea:screenCenter()
     self:add(self.ch3erea)
+
+    self.vid = ALEVideo:new(0, 0, 'video')
+    self:add(self.vid)
+    self.vid:play()
 end
 
 local curTime = 0
