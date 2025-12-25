@@ -10,6 +10,8 @@ local ALE_G = {
 function ALE_G.init(initialState)
     ALEPaths.init()
 
+    ALE_G.keys = ALEKeyManager:new()
+
     ALE_G.game = ALEGame:new(initialState:new())
 end
 
@@ -21,6 +23,8 @@ function ALE_G.update(elapsed)
     ALE_G.elapsed = elapsed
 
     ALE_G.game:update(elapsed)
+
+    ALE_G.keys:update()
 end
 
 function ALE_G.draw()
@@ -28,20 +32,16 @@ function ALE_G.draw()
 end
 
 function ALE_G.justPressedKey(key)
-    ALE_G.game:justPressedKey(key)
+    ALE_G.keys:justPressedKey(key)
 end
 
 function ALE_G.justReleasedKey(key)
-    ALE_G.game:justReleasedKey(key)
+    ALE_G.keys:justReleasedKey(key)
 end
 
 setmetatable(ALE_G, {
     __index = function(_, key)
-        local getters = {
-            camera = ALE_G.game.cameras.members[1]
-        }
-
-        return getters[key] or rawget(ALE_G, key) or ALE_G.game[key]
+        return rawget(ALE_G, key) or ALE_G.game[key]
     end
 })
 

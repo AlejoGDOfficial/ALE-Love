@@ -1,11 +1,16 @@
-local ALEPoint = require('ale.math.ALEPoint')
-
 local ALECamera = ALEClass.extend(ALEBasic)
 
 function ALECamera:new(x, y, width, height)
     local this = ALEBasic.new(self)
 
-    this.scroll = ALEPoint:new()
+    this.scroll = {
+        x = 0,
+        y = 0,
+        set = function(s, sX, sY)
+            s.x = sX or 0
+            s.y = sY or 0
+        end
+    }
 
     this.zoom = 1
 
@@ -25,14 +30,13 @@ function ALECamera:attach()
     local zoom = self.zoom
     love.graphics.scale(zoom)
 
-    local halfW = self.width / 2
-    local halfH = self.height / 2
-
+    local halfW = self.width * 0.5
+    local halfH = self.height * 0.5
     local invZoom = 1 / zoom
 
     love.graphics.translate(
-        -halfW + (halfW * invZoom),
-        -halfH + (halfH * invZoom)
+        -self.scroll.x - halfW + (halfW * invZoom),
+        -self.scroll.y - halfH + (halfH * invZoom)
     )
 end
 
@@ -57,7 +61,7 @@ function ALECamera:queue(obj)
 end
 
 function ALECamera:drawObject(obj)
-    if obj.alpha <= 0 or not obj.visible or not obj.graphic then
+    if not obj.visible then
         return
     end
 
@@ -70,8 +74,8 @@ function ALECamera:drawObject(obj)
 
     love.graphics.draw(
         obj.graphic,
-        obj.x + obj.offset.x,
-        obj.y + obj.offset.y,
+        obj.x + obj.origin.x - self.scroll.x * obj.scrollFactor.x,
+        obj.y + obj.origin.y - self.scroll.y * obj.scrollFactor.y,
         math.rad(obj.angle),
         obj.scale.x,
         obj.scale.y,

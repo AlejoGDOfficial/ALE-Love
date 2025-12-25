@@ -1,6 +1,6 @@
-local ALEDrawable = require('ale.ALEDrawable')
+local ALEPoint = require('ale.math.ALEPoint')
 
-local ALESprite = ALEClass.extend(ALEDrawable)
+local ALESprite = ALEClass.extend(ALEBasic)
 
 function ALESprite:new(x, y, graphic)
     local this = ALEBasic.new(self)
@@ -31,6 +31,8 @@ function ALESprite:new(x, y, graphic)
 
     this.offset = ALEPoint:new()
 
+    this.scrollFactor = ALEPoint:new()
+
     this.graphic = nil
 
     if graphic then
@@ -38,6 +40,8 @@ function ALESprite:new(x, y, graphic)
     else
         this:makeGraphic(100, 100, { r = 255, g = 0, b = 255 })
     end
+
+    this.visible = true
 
     return this
 end
@@ -62,6 +66,43 @@ function ALESprite:loadGraphic(target)
     self.graphic = ALEPaths.image(target)
 
     self:updateHitbox()
+end
+
+function ALESprite:updateHitbox()
+    self.origin:set(self.graphic:getWidth() * self.scale.x / 2, self.graphic:getHeight() * self.scale.y / 2)
+end
+
+function ALESprite:draw()
+    for i, camera in ipairs(self.cameras) do
+        if camera then
+            camera:queue(self)
+        end
+    end
+end
+
+function ALESprite:update(elapsed)
+    self.velocity.x = self.velocity.x + self.acceleration.x * elapsed
+
+    self.x = self.x + self.velocity.x * elapsed
+
+    self.velocity.y = self.velocity.y + self.acceleration.y * elapsed
+
+    self.y = self.y + self.velocity.y * elapsed
+end
+
+function ALESprite:screenCenter()
+    local sw, sh = love.graphics.getDimensions()
+
+    self.x = sw / 2 - self:getWidth() / 2
+    self.y = sh / 2 - self:getHeight() / 2
+end
+
+function ALESprite:getWidth()
+    return self.graphic:getWidth() * self.scale.x
+end
+
+function ALESprite:getHeight()
+    return self.graphic:getHeight() * self.scale.y
 end
 
 return ALESprite
