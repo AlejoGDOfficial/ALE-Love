@@ -29,15 +29,23 @@ end
 function ALEGame:update(elapsed)
     self.keys:update()
 
-    self.state:update(elapsed)
-
     self.cameras:update(elapsed)
+
+    self.state:update(elapsed)
 end
 
 function ALEGame:draw()
     self.state:draw()
 
     self.cameras:draw()
+end
+
+function ALEGame:justPressedKey(key)
+    self.keys:justPressedKey(key)
+end
+
+function ALEGame:justReleasedKey(key)
+    self.keys:justReleasedKey(key)
 end
 
 return ALEGame
