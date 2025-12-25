@@ -40,6 +40,8 @@ function TestState:update(elapsed)
     if ALE_G.keys['right'] then
         self.ch3erea.velocity.x = 100
     end
+
+    self.ch3erea.angle = self.ch3erea.angle + 300 * elapsed
 end
 
 return TestState

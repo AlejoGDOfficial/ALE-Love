@@ -74,13 +74,13 @@ function ALECamera:drawObject(obj)
 
     love.graphics.draw(
         obj.graphic,
-        obj.x + obj.offset.x,
-        obj.y + obj.offset.y,
+        obj.x + obj.origin.x - self.scroll.x * obj.scrollFactor.x,
+        obj.y + obj.origin.y - self.scroll.y * obj.scrollFactor.y,
         math.rad(obj.angle),
         obj.scale.x,
         obj.scale.y,
-        obj.origin.x,
-        obj.origin.y
+        obj.origin.x / obj.scale.x,
+        obj.origin.y / obj.scale.y
     )
 end
 
