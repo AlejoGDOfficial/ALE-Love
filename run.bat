@@ -2,7 +2,7 @@
 title Run LOVE2D Project
 
 :run
-"C:\Program Files\LOVE\love.exe" %~dp0
+"C:\Program Files\LOVE\love.exe" project
 
 choice /c YN /m "Retry?"
 
