@@ -10,6 +10,8 @@ ALEState = require('ale.ALEState')
 
 ALESprite = require('ale.ALESprite')
 
+ALEText = require('ale.text.ALEText')
+
 ALEVideo = require('ale.ALEVideo')
 
 ALECamera = require('ale.ALECamera')

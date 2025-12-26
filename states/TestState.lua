@@ -14,9 +14,17 @@ function TestState:load()
     self.ch3erea:screenCenter()
     self:add(self.ch3erea)
 
+    self.text = ALEText:new(0, 0, 'oso')
+    self:add(self.text)
+    self.text:setFont('nokiafc22.ttf', 50)
+
     self.vid = ALEVideo:new(0, 0, 'video')
-    self:add(self.vid)
-    self.vid:play()
+    --self:add(self.vid)
+    --self.vid:play()
+
+    print(self.ch3erea)
+    print(self.text)
+    print(self.vid)
 end
 
 local curTime = 0

@@ -23,6 +23,18 @@ function ALEObject:new(x, y)
 
     this.scrollFactor = ALEPoint:new()
 
+    this.__getters.width = function(s)
+        return s.scale.x
+    end
+
+    this.__setters.width = nil
+
+    this.__getters.height = function(s)
+        return s.scale.y
+    end
+
+    this.__setters.height = nil
+
     return this
 end
 
@@ -39,16 +51,8 @@ end
 function ALEObject:screenCenter()
     local sw, sh = love.graphics.getDimensions()
 
-    self.x = sw / 2 - self:getWidth() / 2
-    self.y = sh / 2 - self:getHeight() / 2
-end
-
-function ALEObject:getWidth()
-    return self.scale.x
-end
-
-function ALEObject:getHeight()
-    return self.scale.y
+    self.x = sw / 2 - self.width / 2
+    self.y = sh / 2 - self.height / 2
 end
 
 return ALEObject

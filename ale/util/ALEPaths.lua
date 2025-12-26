@@ -29,6 +29,12 @@ function ALEPaths.init()
                 return love.sound.newDecoder(file)
             end,
             cache = {}
+        },
+        font = {
+            path = 'fonts/',
+            extension = '',
+            method = love.graphics.newFont,
+            cache = {}
         }
     }
 end
@@ -63,6 +69,10 @@ end
 
 function ALEPaths.music(file)
     return cachePath(file, 'music')
+end
+
+function ALEPaths.font(file)
+    return cachePath(file, 'font')
 end
 
 return ALEPaths
