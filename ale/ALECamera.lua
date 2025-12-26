@@ -1,16 +1,11 @@
+local ALEPoint = require('ale.math.ALEPoint')
+
 local ALECamera = ALEClass.extend(ALEBasic)
 
 function ALECamera:new(x, y, width, height)
     local this = ALEBasic.new(self)
 
-    this.scroll = {
-        x = 0,
-        y = 0,
-        set = function(s, sX, sY)
-            s.x = sX or 0
-            s.y = sY or 0
-        end
-    }
+    this.scroll = ALEPoint:new()
 
     this.zoom = 1
 
