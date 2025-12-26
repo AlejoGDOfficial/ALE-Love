@@ -19,11 +19,11 @@ function ALEDrawable:new(x, y)
 
     this.visible = true
 
-    this.__getters.width = function(s)
+    this.__property.getters.width = function(s)
         return this.graphic:getWidth() * this.scale.x
     end
 
-    this.__getters.height = function(s)
+    this.__property.getters.height = function(s)
         return this.graphic:getHeight() * this.scale.y
     end
 

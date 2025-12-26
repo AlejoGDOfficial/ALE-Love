@@ -23,17 +23,17 @@ function ALEObject:new(x, y)
 
     this.scrollFactor = ALEPoint:new()
 
-    this.__getters.width = function(s)
+    this.__property.getters.width = function(s)
         return s.scale.x
     end
 
-    this.__setters.width = nil
+    this.__property.setters.width = nil
 
-    this.__getters.height = function(s)
+    this.__property.getters.height = function(s)
         return s.scale.y
     end
 
-    this.__setters.height = nil
+    this.__property.setters.height = nil
 
     return this
 end

@@ -39,16 +39,28 @@ function ALEPaths.init()
     }
 end
 
-local function cachePath(file, id)
+local function cachePath(file, id, args)
     local data = ALEPaths.config[id]
 
     local path = ALEPaths.getPath(data.path .. file .. data.extension)
 
-    if not data.cache[file] then
-        data.cache[file] = data.method(path)
+    local methodArgs = { path }
+
+    local cacheID = file
+
+    if args then
+        for _, arg in ipairs(args) do
+            table.insert(methodArgs, arg)
+
+            cacheID = cacheID .. tostring(arg)
+        end
     end
 
-    return data.cache[file]
+    if not data.cache[cacheID] then
+        data.cache[cacheID] = data.method(unpack(methodArgs))
+    end
+
+    return data.cache[cacheID]
 end
 
 function ALEPaths.getPath(file)
@@ -71,8 +83,8 @@ function ALEPaths.music(file)
     return cachePath(file, 'music')
 end
 
-function ALEPaths.font(file)
-    return cachePath(file, 'font')
+function ALEPaths.font(file, size)
+    return cachePath(file, 'font', { size })
 end
 
 return ALEPaths
