@@ -8,28 +8,28 @@ function ALEClass:new()
     }
 
     setmetatable(obj, {
-        __index = function(self, key)
-            local getter = self.__getters[key]
+        __index = function(this, key)
+            local getter = this.__getters[key]
 
             if getter then
-                return getter(self)
+                return getter(this)
             end
 
-            return self.__class[key]
+            return this.__class[key]
         end,
 
-        __newindex = function(self, key, value)
-            local setter = self.__setters[key]
+        __newindex = function(this, key, value)
+            local setter = this.__setters[key]
 
             if setter then
-                return setter(self, value)
+                return setter(this, value)
             end
 
-            rawset(self, key, value)
+            rawset(this, key, value)
         end,
 
-        __tostring = function(self)
-            return self.__class.__id
+        __tostring = function(this)
+            return this.__id
         end
     })
 
