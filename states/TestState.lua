@@ -14,21 +14,24 @@ function TestState:load()
     self.ch3erea:screenCenter()
     self:add(self.ch3erea)
 
-    self.text = ALEText:new(0, 0, 'oso')
+    self.text = ALEText:new(5, 5, 'oso', 50)
     self:add(self.text)
-    self.text.font = 'nokiafc22.ttf'
 
     self.vid = ALEVideo:new(0, 0, 'video')
     --self:add(self.vid)
     --self.vid:play()
 end
 
+local curFPS = 0
+
 local curTime = 0
 
 function TestState:update(elapsed)
     ALEState.update(self, elapsed)
 
-    self.text.text = elapsed
+    curFPS = ALEMath.fpsLerp(curFPS, 1 / elapsed, 0.3)
+
+    self.text.text = 'FPS: ' .. math.ceil(curFPS)
 
     curTime = curTime + elapsed
 

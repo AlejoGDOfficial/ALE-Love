@@ -21,11 +21,11 @@ function ALEClass:new()
         __newindex = function(this, key, value)
             local setter = this.__setters[key]
 
-            if setter then
-                return setter(this, value)
-            end
-
             rawset(this, key, value)
+
+            if setter then
+                setter(this, value)
+            end
         end,
 
         __tostring = function(this)
