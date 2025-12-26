@@ -47,8 +47,8 @@ local function cachePath(file, id, addArgs)
     local args = { path }
 
     if addArgs then
-        for _, arg in addArgs do
-            args.insert(arg)
+        for _, arg in ipairs(addArgs) do
+            table.insert(args, arg)
         end
     end
 
@@ -80,7 +80,7 @@ function ALEPaths.music(file)
 end
 
 function ALEPaths.font(file, size)
-    return cachePath(file, 'font', size)
+    return cachePath(file, 'font', { size })
 end
 
 return ALEPaths

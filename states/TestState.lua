@@ -14,8 +14,9 @@ function TestState:load()
     self.ch3erea:screenCenter()
     self:add(self.ch3erea)
 
-    self.text = ALEText:new(5, 5, 'oso', 50)
+    self.text = ALEText:new(15, 5, 'oso', 50)
     self:add(self.text)
+    self.text.font = 'nokiafc22.ttf'
 
     self.vid = ALEVideo:new(0, 0, 'video')
     --self:add(self.vid)
