@@ -4,12 +4,14 @@ local AleG = require 'ale.AleG'
 
 local AleAssets = Classic:extend()
 
+AleAssets.__name = 'AleAssets'
+
 function AleAssets:new()
     local ext = AleAssets.super.new(self)
 
     ext.config = {}
 
-    ext.init(self)
+    ext:init()
 
     return ext
 end

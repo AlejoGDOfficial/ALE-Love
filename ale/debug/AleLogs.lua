@@ -3,6 +3,8 @@ local AleColorUtil = require 'ale.util.AleColorUtil'
 
 local AleLogs = Classic:extend()
 
+AleLogs.__name = 'AleLogs'
+
 function AleLogs:new()
     local ext = AleLogs.super.new(self)
 

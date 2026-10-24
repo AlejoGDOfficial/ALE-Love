@@ -1,11 +1,11 @@
-local AleMeta = require 'ale.config.AleMeta'
-
 local AleG = {
     state = nil,
     assets = nil
 }
 
 function AleG.init()
+    local AleMeta = require 'ale.config.AleMeta'
+
     AleG.state = AleMeta.state:new()
 
     AleG.assets = AleMeta.assets:new()
