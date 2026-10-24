@@ -1,6 +1,3 @@
-local AleState = require 'ale.AleState'
-local AleAssets = require 'ale.assets.AleAssets'
-
 local AleMeta = {
     title = 'ALE Love',
 
@@ -9,8 +6,9 @@ local AleMeta = {
 
     console = true,
 
-    state = AleState,
-    assets = AleAssets
+    logs = require 'ale.debug.AleLogs',
+    assets = require 'ale.assets.AleAssets',
+    state = require 'ale.AleState'
 }
 
 return AleMeta

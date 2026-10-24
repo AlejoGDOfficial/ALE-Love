@@ -1,3 +1,5 @@
+local bit = require("bit")
+
 local AleColorUtil = {
     transparent = 0x00000000,
     white = 0xFFFFFFFF,
@@ -17,25 +19,28 @@ local AleColorUtil = {
 }
 
 function AleColorUtil.fromRGB(r, g, b, a)
+    r = r or 0
+    g = g or 0
+    b = b or 0
     a = a or 255
 
-    return (a << 24) | (r << 16) | (g << 8) | b
+    return bit.bor(bit.lshift(a, 24), bit.lshift(r, 16), bit.lshift(g, 8), b)
 end
 
 function AleColorUtil.getRed(color)
-    return (color >> 16) & 0xFF
+    return bit.band(bit.rshift(color, 16), 0xFF)
 end
 
 function AleColorUtil.getGreen(color)
-    return (color >> 8) & 0xFF
+    return bit.band(bit.rshift(color, 8), 0xFF)
 end
 
 function AleColorUtil.getBlue(color)
-    return color & 0xFF
+    return bit.band(color, 0xFF)
 end
 
 function AleColorUtil.getAlpha(color)
-    return (color >> 24) & 0xFF
+    return bit.band(bit.rshift(color, 24), 0xFF)
 end
 
 function AleColorUtil.getRGB(color)
@@ -47,6 +52,14 @@ function AleColorUtil.getNormalizedRGB(color)
     local r, g, b, a = AleColorUtil.getRGB(color)
 
     return r / 255, g / 255, b / 255, a / 255
+end
+
+function AleColorUtil.toAnsi(text, color)
+    return AleColorUtil.rgbToAnsi(text, AleColorUtil.getRGB(color))
+end
+
+function AleColorUtil.rgbToAnsi(text, r, g, b)
+    return '\x1b[38;2;' .. r .. ';' .. g .. ';' .. b .. 'm' .. text .. '\x1b[0m'
 end
 
 return AleColorUtil

@@ -9,7 +9,11 @@ function AleState:new()
 
     ext.subState = nil
 
+    ext:create()
+
     return ext
 end
+
+function AleState:create() end
 
 return AleState

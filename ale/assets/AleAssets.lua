@@ -57,7 +57,7 @@ function AleAssets:get(type, file, persists, missingPrint, args, cache)
 
     if data.cache and not self.library:exists(path) then
         if missingPrint then
-            AleG.logs.print(path, 'missing_file')
+            AleG.logs:print(path, 'missing_file')
         end
 
         return nil
