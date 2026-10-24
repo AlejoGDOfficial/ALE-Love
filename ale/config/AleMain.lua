@@ -1,3 +1,5 @@
+local AleG = require 'ale.AleG'
+
 if love.system.getOS() == 'Windows' then
     local ffi = require('ffi')
 
@@ -7,7 +9,13 @@ if love.system.getOS() == 'Windows' then
 end
 
 function love.load()
+    AleG.init()
 end
 
 function love.update(elapsed)
+    AleG.update(elapsed)
+end
+
+function love.draw()
+    AleG.draw()
 end

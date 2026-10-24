@@ -1,4 +1,8 @@
-AleBasic = Classic:extend()
+local Classic = require 'ale.std.Classic'
+
+local AleBasic = Classic:extend()
+
+AleBasic.__name = 'AleBasic'
 
 function AleBasic:new()
     local ext = AleBasic.super.new(self)
@@ -23,10 +27,6 @@ end
 
 function AleBasic:destroy()
 
-end
-
-function AleBasic:toString()
-    return 'AleBasic'
 end
 
 return AleBasic

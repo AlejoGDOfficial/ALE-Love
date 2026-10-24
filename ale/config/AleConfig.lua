@@ -1,10 +1,11 @@
-require 'ale.config.AleImport'
+local AleMeta = require 'ale.config.AleMeta'
 
 function love.conf(game)
     game.window = {
-        title = 'ALE Love',
-        width = 1280,
-        height = 720
+        title = AleMeta.title,
+        width = AleMeta.width,
+        height = AleMeta.height
     }
-    game.console = true
+
+    game.console = AleMeta.console
 end

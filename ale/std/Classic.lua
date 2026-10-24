@@ -11,7 +11,10 @@
 --- A base class that supports the `extend`, `implement`, and `is` functionalities.
 --- @field super Classic|nil # A reference to the parent class (if extended).
 local Classic = {}
+
 Classic.__index = Classic
+
+Classic.__name = 'Classic'
 
 --- Creates a new instance of the class when called.
 --- Constructor for an Classic.
@@ -62,14 +65,14 @@ function Classic:is(T)
     return false
 end
 
---- Returns a string representation of the Classic.
---- @return string
 function Classic:__tostring()
-    return self:toString()
+    return self:toString() or self.__name
 end
 
+--- Returns a string representation of the Classic
+--- @return string
 function Classic:toString()
-    return 'Classic'
+    return nil
 end
 
 return Classic
