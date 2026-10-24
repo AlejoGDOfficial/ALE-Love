@@ -13,8 +13,7 @@ function AleG.init()
 
     AleG.cameras = AleCamerasManager:new()
 
-    AleG.state = AleMeta.state:new()
-    AleG.state:create();
+    AleG.switchState(AleMeta.state:new())
 end
 
 function AleG.destroy() end
@@ -30,6 +29,22 @@ function AleG.draw()
     AleG.state:draw()
 
     AleG.cameras:draw()
+end
+
+function AleG.switchState(state)
+    if AleG.state then
+        AleG.state:destroy()
+    end
+
+    AleG.cameras:clear()
+
+    local AleCamera = require 'ale.AleCamera'
+
+    AleG.camera = AleCamera:new()
+    AleG.cameras:add(AleG.camera)
+
+    AleG.state = state
+    state:create()
 end
 
 return AleG

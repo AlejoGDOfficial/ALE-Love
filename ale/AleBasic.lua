@@ -13,7 +13,9 @@ function AleBasic:new()
     ext.visible = true
     ext.exists = true
 
-    ext.cameras = {}
+    local AleG = require 'ale.AleG'
+
+    ext.cameras = { AleG.camera }
 
     return ext
 end
@@ -22,7 +24,7 @@ function AleBasic:update(elapsed) end
 
 function AleBasic:draw()
     AleArrayUtil.forEach(self.cameras, function(cam)
-        cam.queue(self)
+        cam:queue(self)
     end, true)
 end
 

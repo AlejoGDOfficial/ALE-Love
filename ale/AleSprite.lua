@@ -3,6 +3,8 @@ local AlePaths = require 'ale.assets.AlePaths'
 
 local AleSprite = AleObject:extend()
 
+AleSprite.__name = 'AleSprite'
+
 function AleSprite:new(x, y, img)
     local ext = AleSprite.super.new(self, x, y)
 
@@ -20,7 +22,7 @@ function AleSprite:loadGraphic(img)
 end
 
 function AleSprite:drawComplex()
-    print('oso')
+
 end
 
 return AleSprite

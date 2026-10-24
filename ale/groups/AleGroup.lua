@@ -29,6 +29,10 @@ function AleGroup:remove(obj, splice)
     return AleArrayUtil.remove(self.members, obj, splice)
 end
 
+function AleGroup:clear()
+    self.members = {}
+end
+
 function AleGroup:update(elapsed)
     AleGroup.super.update(self, elapsed)
 

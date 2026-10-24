@@ -3,6 +3,8 @@ local AleArrayUtil = require 'ale.util.AleArrayUtil'
 
 local AleCamera = Classic:extend()
 
+AleCamera.__name = 'AleCamera'
+
 function AleCamera:new()
     local ext = AleCamera.super.new(self)
 
