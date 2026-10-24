@@ -28,7 +28,7 @@ function AleBasic:draw()
     end, true)
 end
 
-function AleBasic:drawComplex() end
+function AleBasic:drawComplex(camera) end
 
 function AleBasic:destroy() end
 

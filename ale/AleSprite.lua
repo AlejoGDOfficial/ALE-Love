@@ -2,7 +2,7 @@ local AleObject = require 'ale.AleObject'
 local AlePaths = require 'ale.assets.AlePaths'
 local AleAngle = require 'ale.math.AleAngle'
 local AlePoint = require 'ale.math.AlePoint'
-local AleRect = require 'ale.math.AleRect'
+local AleColorUtil = require 'ale.util.AleColorUtil'
 
 local AleSprite = AleObject:extend()
 
@@ -17,6 +17,7 @@ function AleSprite:new(x, y, img)
     ext.skew = AlePoint:new(0)
     ext.origin = AlePoint:new()
     ext.offset = AlePoint:new()
+    ext.color = AleColorUtil.white
     ext.clipRect = nil
 
     if img then
@@ -50,7 +51,7 @@ function AleSprite:updateHitbox()
     self:centerOrigin()
 end
 
-function AleSprite:drawComplex()
+function AleSprite:drawComplex(cam)
     if not self.graphic then
         return
     end
@@ -58,6 +59,8 @@ function AleSprite:drawComplex()
     if self.clipRect then
         love.graphics.setScissor(self.clipRect.x, self.clipRect.y, self.clipRect.width, self.clipRect.height)
     end
+
+    love.graphics.setColor(AleColorUtil.getNormalizedRGB(self.color))
 
     love.graphics.draw(
         self.graphic,
@@ -70,6 +73,8 @@ function AleSprite:drawComplex()
         math.tan(AleAngle.toRad * self.skew.x),
         math.tan(AleAngle.toRad * self.skew.y)
     )
+
+    love.graphics.setColor(1, 1, 1, 1)
 
     love.graphics.setScissor()
 end

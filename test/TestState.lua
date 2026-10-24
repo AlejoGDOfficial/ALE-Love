@@ -8,7 +8,6 @@ function TestState:create()
     TestState.super.create(self)
 
     self.spr = AleSprite:new(0, 0, 'example')
-    self.spr.clipRect = require('ale.math.AleRect'):new(20, 20, 200, 200)
     self:add(self.spr)
 end
 
