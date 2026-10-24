@@ -1,19 +1,20 @@
-local TestState = AleState:extend()
+local AleState = require 'ale.AleState'
+local AleSprite = require 'ale.AleSprite'
+local AleG = require 'ale.AleG'
 
-local image = nil
+local TestState = AleState:extend()
 
 function TestState:create()
     TestState.super.create(self)
 
-    image = AlePaths.image('examples') or AlePaths.image('example')
+    self.spr = AleSprite:new(0, 0, 'example')
+    self:add(self.spr)
 end
 
-function TestState:draw()
-    TestState.super.draw(self)
+function TestState:update(elapsed)
+    TestState.super.update(self, elapsed)
 
-    if image then
-        love.graphics.draw(image)
-    end
+    self.spr.x = math.sin(AleG.time) * 200 + 200
 end
 
 return TestState
