@@ -1,9 +1,3 @@
-local ffi = require("ffi")
-
-ffi.cdef "int SetProcessDPIAware();"
-
-ffi.load("user32").SetProcessDPIAware()
-
 require('import')
 
 function love.conf(game)
