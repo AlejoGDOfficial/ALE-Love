@@ -11,6 +11,7 @@ function AleObject:new(x, y, width, height)
     ext.y = y or 0
     ext.width = width or 0
     ext.height = height or 0
+    ext.angle = 0
 
     return ext
 end
