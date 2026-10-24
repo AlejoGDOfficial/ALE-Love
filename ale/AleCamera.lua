@@ -1,7 +1,7 @@
-local Classic = require 'ale.std.Classic'
+local AleBasic = require 'ale.AleBasic'
 local AleArrayUtil = require 'ale.util.AleArrayUtil'
 
-local AleCamera = Classic:extend()
+local AleCamera = AleBasic:extend()
 
 AleCamera.__name = 'AleCamera'
 

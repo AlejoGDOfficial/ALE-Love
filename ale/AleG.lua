@@ -22,6 +22,8 @@ function AleG.update(elapsed)
     AleG.elapsed = elapsed
     AleG.time = AleG.time + elapsed
 
+    AleG.cameras:update(elapsed)
+
     AleG.state:tryUpdate(elapsed)
 end
 

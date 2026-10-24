@@ -37,7 +37,9 @@ function AleGroup:update(elapsed)
     AleGroup.super.update(self, elapsed)
 
     AleArrayUtil.forEach(self.members, function(obj)
-        obj:update(elapsed)
+        if obj.alive and obj.exists then
+            obj:update(elapsed)
+        end
     end, true)
 end
 
@@ -45,7 +47,9 @@ function AleGroup:draw()
     AleGroup.super.draw(self)
 
     AleArrayUtil.forEach(self.members, function(obj)
-        obj:draw()
+        if obj.visible and obj.exists then
+            obj:draw()
+        end
     end, true)
 end
 
