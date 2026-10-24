@@ -1,14 +1,16 @@
 local AleState = require 'ale.AleState'
+local AleAssets = require 'ale.assets.AleAssets'
 
-local AleMeta = {}
+local AleMeta = {
+    title = 'ALE Love',
 
-AleMeta.title = 'ALE Love'
+    width = 1280,
+    height = 720,
 
-AleMeta.width = 1280
-AleMeta.height = 720
+    console = true,
 
-AleMeta.console = true
-
-AleMeta.initialState = AleState
+    state = AleState,
+    assets = AleAssets
+}
 
 return AleMeta
