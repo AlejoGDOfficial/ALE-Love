@@ -13,8 +13,6 @@ end
 
 function TestState:update(elapsed)
     TestState.super.update(self, elapsed)
-
-    self.spr.x = math.sin(AleG.time) * 200 + 200
 end
 
 return TestState

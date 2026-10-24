@@ -1,4 +1,5 @@
 local Classic = require 'ale.std.Classic'
+local AleArrayUtil = require 'ale.util.AleArrayUtil'
 
 local AleBasic = Classic:extend()
 
@@ -17,16 +18,16 @@ function AleBasic:new()
     return ext
 end
 
-function AleBasic:update(elapsed)
-
-end
+function AleBasic:update(elapsed) end
 
 function AleBasic:draw()
-
+    AleArrayUtil.forEach(self.cameras, function(cam)
+        cam.queue(self)
+    end, true)
 end
 
-function AleBasic:destroy()
+function AleBasic:drawComplex() end
 
-end
+function AleBasic:destroy() end
 
 return AleBasic

@@ -6,8 +6,12 @@ function AleG.init()
 
     local AleMeta = require 'ale.config.AleMeta'
 
+    local AleCamerasManager = require 'ale.graphics.AleCamerasManager'
+
     AleG.logs = AleMeta.logs:new()
     AleG.assets = AleMeta.assets:new()
+
+    AleG.cameras = AleCamerasManager:new()
 
     AleG.state = AleMeta.state:new()
     AleG.state:create();
@@ -24,6 +28,8 @@ end
 
 function AleG.draw()
     AleG.state:draw()
+
+    AleG.cameras:draw()
 end
 
 return AleG

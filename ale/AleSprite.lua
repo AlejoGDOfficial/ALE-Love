@@ -19,10 +19,8 @@ function AleSprite:loadGraphic(img)
     self.graphic = type(img) == 'string' and AlePaths.image(img) or img
 end
 
-function AleSprite:draw()
-    if self.graphic then
-        love.graphics.draw(self.graphic, self.x, self.y)
-    end
+function AleSprite:drawComplex()
+    print('oso')
 end
 
 return AleSprite

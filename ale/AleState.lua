@@ -42,18 +42,18 @@ function AleState:openChild(sub)
     self.child = sub
 
     sub.parent = self
-    sub.create()
+    sub:create()
 end
 
 function AleState:closeChild()
     if self.child then
-        self.child.destroy()
+        self.child:destroy()
         self.child = nil
     end
 end
 
 function AleState:destroy()
-    AleState:closeChild()
+    self:closeChild()
 
     AleState.super.destroy(self)
 end
