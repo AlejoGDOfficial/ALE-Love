@@ -17,13 +17,13 @@ function AleAssets:new()
 end
 
 function AleAssets:init()
-    self.library = AleAssetsLibrary:new({ '' })
+    self.library = AleAssetsLibrary:new({ 'assets' })
 
     self:addType('image', {
         prefix = 'images/',
         suffix = '.png',
         get = function(id, _)
-
+            return self.library:image(id)
         end
     })
 end
@@ -49,13 +49,13 @@ function AleAssets:get(type, file, persists, missingPrint, args, cache)
         return nil
     end
 
-    local path = data.prefix + file + data.suffix
+    local path = data.prefix .. file .. data.suffix
 
     if data.cache[path] then
-        return data.cache[path]
+        return data.cache[path].content
     end
 
-    if data.cache and not self.library.exists(path) then
+    if data.cache and not self.library:exists(path) then
         if missingPrint then
             AleG.logs.print(path, 'missing_file')
         end
