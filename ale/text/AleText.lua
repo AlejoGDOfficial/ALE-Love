@@ -8,6 +8,8 @@ AleText.__name = 'AleText'
 function AleText:new(x, y, text, size, font)
     local ext = AleText.super.new(self, x, y)
 
+    ext.text = ''
+
     ext:setFont(font, size)
     ext:setText(text)
 
@@ -27,10 +29,12 @@ function AleText:setFont(font, size)
 end
 
 function AleText:setText(text)
-    self.graphic:set(text)
+    self.graphic:set(tostring(text))
 
     self:updateSize()
     self:updateHitbox()
+
+    self.text = text
 end
 
 return AleText
