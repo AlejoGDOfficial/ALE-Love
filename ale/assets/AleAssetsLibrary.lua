@@ -42,4 +42,10 @@ function AleAssetsLibrary:font(id, size)
     return path and love.graphics.newFont(path, size) or nil
 end
 
+function AleAssetsLibrary:sound(id)
+    local path = self:getPath(id)
+
+    return path and love.audio.newSource(path, 'static') or nil
+end
+
 return AleAssetsLibrary

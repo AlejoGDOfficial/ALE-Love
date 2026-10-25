@@ -33,6 +33,13 @@ function AleAssets:init()
             return self.library:font(id, size)
         end
     })
+
+    self:addType('audio', {
+        suffix = '.ogg',
+        get = function(id)
+            return self.library:sound(id)
+        end
+    })
 end
 
 function AleAssets:addType(id, data)
