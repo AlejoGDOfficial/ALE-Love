@@ -30,12 +30,15 @@ end
 function AleSprite:loadGraphic(img)
     self.graphic = type(img) == 'string' and AlePaths.image(img) or img
 
+    self:updateSize()
+    self:centerOrigin()
+end
+
+function AleSprite:updateSize()
     self.frameWidth, self.frameHeight = self.graphic:getDimensions()
 
     self.width = self.frameWidth
     self.height = self.frameHeight
-
-    self:centerOrigin()
 end
 
 function AleSprite:centerOrigin()

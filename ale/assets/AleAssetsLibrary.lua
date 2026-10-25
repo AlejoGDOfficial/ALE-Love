@@ -29,7 +29,17 @@ function AleAssetsLibrary:exists(uPath)
 end
 
 function AleAssetsLibrary:image(id)
-    return love.graphics.newImage(self:getPath(id))
+    local path = self:getPath(id)
+
+    return path and love.graphics.newImage(path) or nil
+end
+
+function AleAssetsLibrary:font(id, size)
+    size = size or 16
+
+    local path = self:getPath(id)
+
+    return path and love.graphics.newFont(path, size) or nil
 end
 
 return AleAssetsLibrary

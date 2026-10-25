@@ -22,8 +22,15 @@ function AleAssets:init()
     self:addType('image', {
         prefix = 'images/',
         suffix = '.png',
-        get = function(id, _)
+        get = function(id)
             return self.library:image(id)
+        end
+    })
+
+    self:addType('font', {
+        prefix = 'fonts/',
+        get = function(id, size)
+            return self.library:font(id, size)
         end
     })
 end
@@ -39,7 +46,7 @@ function AleAssets:addType(id, data)
     return data
 end
 
-function AleAssets:get(type, file, persists, missingPrint, args, cache)
+function AleAssets:get(type, file, persists, missingPrint, cache, ...)
     missingPrint = missingPrint or true
     cache = cache or true
 
@@ -63,7 +70,7 @@ function AleAssets:get(type, file, persists, missingPrint, args, cache)
         return nil
     end
 
-    local res = data.get(path, args)
+    local res = data.get(path, ...)
 
     if cache and res then
         data.cache[path] = {
